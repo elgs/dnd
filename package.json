@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "test": "npx jasmine tests/*",
-    "dev": "npx live-server"
+    "dev": "npx live-server --host=0.0.0.0"
   },
   "author": "Qian Chen",
   "license": "MIT",

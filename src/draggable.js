@@ -276,9 +276,9 @@ export class Draggable {
       const dom = me.dom;
       const settings = me.settings;
 
-      // if (e.type === 'touchstart') {
-      //     // e.preventDefault();
-      // }
+      if (e.type === 'touchstart') {
+          e.preventDefault();
+      }
       if (e.type === 'mousedown' && e.button !== 0) {
          return;
       }

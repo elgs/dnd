@@ -20,60 +20,29 @@
   <script type="module">
     import { makeDraggable, makeDroppable, dndEvent } from '../../src/az.js';
     const source0 = document.querySelector('div.source');
-    makeDraggable(source0, {
-      create: function (e) {
-        if (e.type === 'touchstart') {
-          e.preventDefault();
-        }
-      }
-    });
+    makeDraggable(source0);
 
     const targets = document.querySelectorAll('div.target');
+
+    const handler = e => e.detail.target.querySelector('.message').textContent = e.type;
+
     targets.forEach(target => {
       makeDroppable(target, {
         interestedDropEvents: dndEvent.all,
-        source_all_in: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        source_all_out: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        target_all_in: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        target_all_out: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        source_center_in: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        source_center_out: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        target_center_in: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        target_center_out: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        touch_in: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        touch_out: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        pointer_in: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        pointer_out: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        dragged: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        },
-        dropped: function (e) {
-          e.detail.target.querySelector('.message').textContent = e.type;
-        }
+        source_all_in: handler,
+        source_all_out: handler,
+        target_all_in: handler,
+        target_all_out: handler,
+        source_center_in: handler,
+        source_center_out: handler,
+        target_center_in: handler,
+        target_center_out: handler,
+        touch_in: handler,
+        touch_out: handler,
+        pointer_in: handler,
+        pointer_out: handler,
+        dragged: handler,
+        dropped: handler,
       });
     });
   </script>
