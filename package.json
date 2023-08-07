@@ -1,0 +1,15 @@
+{
+  "name": "dnd",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "npx jasmine tests/*",
+    "dev": "npx live-server"
+  },
+  "author": "Qian Chen",
+  "license": "MIT",
+  "devDependencies": {
+    "jasmine": "5.1.0",
+    "live-server": "^1.2.2",
+    "puppeteer": "21.0.1"
+  }
+}
