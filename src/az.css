@@ -1,0 +1,17 @@
+.azui {
+  --main-color: #e8e8e8;
+
+  --more-active: color-mix(in srgb, var(--main-color) 88%, black);
+  --active: color-mix(in srgb, var(--main-color) 92%, black);
+  --less-active: color-mix(in srgb, var(--main-color) 96%, black);
+
+  --bg-color: #e8e8e8;
+  --gray-text: #666666;
+  --default-text: #444;
+  --allow: #a4d666;
+  --deny: #d95244;
+  --shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --shadow-hovered: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --shadow-inset: inset 0 2px 2px 0 rgba(0, 0, 0, 0.16),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}

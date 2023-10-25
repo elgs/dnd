@@ -1,0 +1,57 @@
+.azui {
+  &.azui-resizable>.handle {
+    background-color: var(--main-color);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.active {
+      background-color: var(--active);
+    }
+
+    & div.collapseButton {
+      background-color: color-mix(in srgb, var(--main-color) 10%, white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      &.active svg {
+        fill: var(--allow) !important;
+      }
+
+      &.collapseButtonH {
+        width: 30px;
+
+        & span.collapseIcon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          & svg {
+            fill: var(--main-color);
+            height: 4px;
+            display: block;
+          }
+        }
+      }
+
+      &.collapseButtonV {
+        height: 30px;
+
+        & span.collapseIcon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          & svg {
+            fill: var(--main-color);
+            width: 4px;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

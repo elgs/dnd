@@ -37,11 +37,6 @@ body {
     width: 130px;
     height: 130px;
   }
-
-  .draggable-handle {
-    border-bottom: 1px solid #979797;
-    height: 20px;
-  }
 }
 
 .div-container {

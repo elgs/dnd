@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>azResizable</title>
+  <link rel="stylesheet" href="../../src/az.css">
+  <link rel="stylesheet" href="./resizable.css">
+  <style>
+    body {
+      margin: 80px;
+      padding: 80px;
+      position: relative;
+    }
+
+    #div0 {
+      width: 200px;
+      height: 200px;
+      box-sizing: border-box;
+      position: absolute;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div0"></div>
+  <script type="module">
+    import { makeResizable, makeDraggable } from '../../src/az.js';
+
+    const elems = document.querySelectorAll('#div0');
+    elems.forEach(el => {
+      makeResizable(el, {
+        handles: 'all',
+        minWidth: 100,
+        maxWidth: 300,
+        minHeight: 100,
+        maxHeight: 300,
+        hideCollapseButton: false,
+      });
+      makeDraggable(el);
+    });
+  </script>
+</body>
+</html>
