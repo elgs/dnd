@@ -38,8 +38,8 @@ export class Resizable {
          // console.log(this, event, ui, wh);
       },
    };
-   init() {
 
+   init() {
       const me = this;
       const dom = this.dom;
       const settings = this.settings;
@@ -47,7 +47,7 @@ export class Resizable {
       let position = getComputedStyle(dom)['position'];
       if (position !== 'absolute' && position !== 'fixed') {
          position = 'relative';
-         dom.style['position'] = position;
+         dom.style.position = position;
       }
       me.position = position;
 
@@ -104,7 +104,7 @@ export class Resizable {
       const h = parseHandles();
       // console.log(h);
 
-      me.style;
+      // me.style;
       let mx = 0;
       let my = 0; // position of this element, and mouse x, y coordinate
 
@@ -112,16 +112,15 @@ export class Resizable {
       const eh = {};
       me.handles = eh;
 
-      const getCursor = d => {
-         if (d === 'e' || d === 'w') {
-            return 'ew-resize';
-         } else if (d === 'n' || d === 's') {
-            return 'ns-resize';
-         } else if (d === 'ne' || d === 'sw') {
-            return 'nesw-resize';
-         } else if (d === 'se' || d === 'nw') {
-            return 'nwse-resize';
-         }
+      const CURSORS = {
+         'e': 'ew-resize',
+         'w': 'ew-resize',
+         'n': 'ns-resize',
+         's': 'ns-resize',
+         'ne': 'nesw-resize',
+         'sw': 'nesw-resize',
+         'se': 'nwse-resize',
+         'nw': 'nwse-resize'
       };
       const createDraggingHandles = function () {
          let inHandle = false;
@@ -146,9 +145,15 @@ export class Resizable {
 
             if (direction === 'n' || direction === 's') {
                collapseButton.classList.add('collapseButtonH');
-               collapseButton.addEventListener('click', function (e) {
-                  me.collapseY(e, collapseButton);
-               });
+               if (direction === 's') {
+                  collapseButton.addEventListener('click', function (e) {
+                     me.collapseS(e, collapseButton);
+                  });
+               } else {
+                  collapseButton.addEventListener('click', function (e) {
+                     me.collapseN(e, collapseButton);
+                  });
+               }
 
                const collapseIconDown = normalizeIcon(svgTriangleDown);
                collapseIconDown.classList.add('collapseIcon', 'collapseIconDown');
@@ -159,9 +164,15 @@ export class Resizable {
                collapseButton.appendChild(collapseIconUp);
             } else if (direction === 'w' || direction === 'e') {
                collapseButton.classList.add('collapseButtonV');
-               collapseButton.addEventListener('click', function (e) {
-                  me.collapseX(e, collapseButton);
-               });
+               if (direction === 'e') {
+                  collapseButton.addEventListener('click', function (e) {
+                     me.collapseE(e, collapseButton);
+                  });
+               } else {
+                  collapseButton.addEventListener('click', function (e) {
+                     me.collapseW(e, collapseButton);
+                  });
+               }
 
                const collapseIconRight = normalizeIcon(svgTriangleRight);
                collapseIconRight.classList.add('collapseIcon', 'collapseIconRight');
@@ -179,7 +190,7 @@ export class Resizable {
                const eld = document.createElement('div');
                eld.classList.add('handle');
                eld.style['z-index'] = Number.MAX_SAFE_INTEGER;
-               eld.style['cursor'] = getCursor(d);
+               eld.style['cursor'] = CURSORS[d];
                eld.style['position'] = 'absolute';
                if (settings.hideHandles) {
                   eld.style['opacity'] = 0;
@@ -192,7 +203,7 @@ export class Resizable {
                   eld.addEventListener('mouseenter', function (e) {
                      inHandle = true;
                      const ct = e.currentTarget;
-                     setTimeout(() => {
+                     requestAnimationFrame(() => {
                         if (!inButton) {
                            ct.classList.add('active');
                         }
@@ -256,7 +267,7 @@ export class Resizable {
             }
             this.dom.classList.remove('active');
 
-            setTimeout(() => {
+            requestAnimationFrame(() => {
                me._resetHandles();
                me._resetCollapseIconStyle();
             });
@@ -495,7 +506,7 @@ export class Resizable {
       };
 
       createDraggingHandles();
-      setTimeout(() => {
+      requestAnimationFrame(() => {
          me._resetCollapseIconStyle();
       });
    }
@@ -587,13 +598,13 @@ export class Resizable {
       this.moveX(by, true);
    }
 
-   collapseX(event, ui) {
+   collapseE(event, ui) {
       const me = this;
       const w = getWidth(me.dom);
       me.dom.style.transition = 'all .2s ease-in';
       if (w > me.settings.minWidth) {
          me.dom.setAttribute('azCollapseWidth', w);
-         setWidth(me.dom, me.settings.minWidth);
+         setOuterBorderWidth(me.dom, me.settings.minWidth);
          me.settings.collapse.call(me, event, ui, w);
       } else {
          const storedW = me.dom.getAttribute('azCollapseWidth') * 1;
@@ -606,13 +617,60 @@ export class Resizable {
       }, 200);
    }
 
-   collapseY(event, ui) {
+   collapseW(event, ui) {
+      const me = this;
+      const w = getWidth(me.dom);
+      me.dom.style.left ||= getComputedStyle(me.dom).left;
+      me.dom.style.transition = 'all .2s ease-in';
+      if (w > me.settings.minWidth) {
+         me.dom.setAttribute('azCollapseWidth', w);
+         requestAnimationFrame(() => {
+            me.dom.style.left = me.thisLeft + w - me.settings.minWidth + 'px';
+         });
+         setOuterBorderWidth(me.dom, me.settings.minWidth);
+         me.settings.collapse.call(me, event, ui, w);
+      } else {
+         const storedW = me.dom.getAttribute('azCollapseWidth') * 1;
+         me.dom.style.left = me.thisLeft + storedW + 'px';
+         setOuterBorderWidth(me.dom, storedW);
+         me.settings.collapse.call(me, event, ui, -storedW);
+      }
+      setTimeout(() => {
+         me.dom.style.transition = '';
+         me._resetCollapseIconStyle();
+      }, 200);
+   }
+
+   collapseS(event, ui) {
       const me = this;
       const h = getHeight(me.dom);
       me.dom.style.transition = 'all .2s ease-in';
       if (h > me.settings.minHeight) {
          me.dom.setAttribute('azCollapseHeight', h);
-         setHeight(me.dom, me.settings.minHeight);
+         setOuterBorderHeight(me.dom, me.settings.minHeight);
+         me.settings.collapse.call(me, event, ui, h);
+      } else {
+         const storedH = me.dom.getAttribute('azCollapseHeight') * 1;
+         setHeight(me.dom, storedH);
+         me.settings.collapse.call(me, event, ui, -storedH);
+      }
+      setTimeout(() => {
+         me.dom.style.transition = '';
+         me._resetCollapseIconStyle();
+      }, 200);
+   }
+
+   collapseN(event, ui) {
+      const me = this;
+      const h = getHeight(me.dom);
+      me.dom.style.top ||= getComputedStyle(me.dom).top;
+      me.dom.style.transition = 'all .2s ease-in';
+      if (h > me.settings.minHeight) {
+         me.dom.setAttribute('azCollapseHeight', h);
+         requestAnimationFrame(() => {
+            me.dom.style.top = me.thisTop + h - me.settings.minHeight + 'px';
+         });
+         setOuterBorderHeight(me.dom, me.settings.minHeight);
          me.settings.collapse.call(me, event, ui, h);
       } else {
          const storedH = me.dom.getAttribute('azCollapseHeight') * 1;

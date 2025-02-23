@@ -148,11 +148,11 @@ export const getDocWidth = function () {
 };
 
 export const getDocScrollLeft = function () {
-   return Math.max(window.pageXOffset, document.documentElement.scrollLeft, document.body.scrollLeft);
+   return Math.max(window.scrollX, document.documentElement.scrollLeft, document.body.scrollLeft);
 };
 
 export const getDocScrollTop = function () {
-   return Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);
+   return Math.max(window.scrollY, document.documentElement.scrollTop, document.body.scrollTop);
 };
 
 export const textWidth = function (elem) {
