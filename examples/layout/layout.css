@@ -1,0 +1,52 @@
+.azui {
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  &.azui-layout {
+    display: grid;
+    grid-template-areas: "n n n" "w c e" "s s s";
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+
+    .azLayoutArea {
+      overflow: hidden;
+
+      div {
+        width: 100%;
+        height: 100%;
+      }
+
+      &.azLayoutAreaNorth {
+        grid-area: n;
+      }
+
+      &.azLayoutAreaEast {
+        grid-area: e;
+      }
+
+      &.azLayoutAreaSouth {
+        grid-area: s;
+      }
+
+      &.azLayoutAreaWest {
+        grid-area: w;
+      }
+
+      &.azLayoutAreaCenter {
+        position: relative;
+        grid-area: c;
+      }
+    }
+  }
+}

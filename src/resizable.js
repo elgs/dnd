@@ -624,14 +624,10 @@ export class Resizable {
       me.dom.style.transition = 'all .2s ease-in';
       if (w > me.settings.minWidth) {
          me.dom.setAttribute('azCollapseWidth', w);
-         requestAnimationFrame(() => {
-            me.dom.style.left = me.thisLeft + w - me.settings.minWidth + 'px';
-         });
          setOuterBorderWidth(me.dom, me.settings.minWidth);
          me.settings.collapse.call(me, event, ui, w);
       } else {
          const storedW = me.dom.getAttribute('azCollapseWidth') * 1;
-         me.dom.style.left = me.thisLeft + storedW + 'px';
          setOuterBorderWidth(me.dom, storedW);
          me.settings.collapse.call(me, event, ui, -storedW);
       }
@@ -667,9 +663,6 @@ export class Resizable {
       me.dom.style.transition = 'all .2s ease-in';
       if (h > me.settings.minHeight) {
          me.dom.setAttribute('azCollapseHeight', h);
-         requestAnimationFrame(() => {
-            me.dom.style.top = me.thisTop + h - me.settings.minHeight + 'px';
-         });
          setOuterBorderHeight(me.dom, me.settings.minHeight);
          me.settings.collapse.call(me, event, ui, h);
       } else {
