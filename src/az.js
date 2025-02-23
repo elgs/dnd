@@ -4,6 +4,8 @@ import { Droppable } from './droppable.js';
 import { Resizable } from './resizable.js';
 import { Sortable } from './sortable.js';
 import { Layout } from './layout.js';
+import { RightClick } from './rightclick.js';
+import { ContextMenu } from './contextmenu.js';
 
 export { dndEvent, dndState };
 export const makeDraggable = (domElement, options, parent = null) => ui(Draggable, domElement, options, parent);
@@ -11,3 +13,5 @@ export const makeDroppable = (domElement, options, parent = null) => ui(Droppabl
 export const makeResizable = (domElement, options, parent = null) => ui(Resizable, domElement, options, parent);
 export const makeSortable = (domElement, options, parent = null) => ui(Sortable, domElement, options, parent);
 export const makeLayout = (domElement, options, parent = null) => ui(Layout, domElement, options, parent);
+export const makeRightClick = (domElement, options, parent = null) => ui(RightClick, domElement, options, parent);
+export const makeContextMenu = (domElement, options, parent = null) => ui(ContextMenu, domElement, options, parent);

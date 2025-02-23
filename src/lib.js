@@ -25,6 +25,8 @@ export const dndEvent = {
    none: 0,
 };
 
+export const cursor = {};
+
 // dom holds component object in [class id]
 let domId = 0;
 export const ui = (componentClass, domElement, options, parent = null) => {

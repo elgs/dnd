@@ -1,0 +1,75 @@
+.azui {
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  &.azContextMenuPopup {
+    background-color: #e8e8e8;
+    position: absolute;
+    min-width: 150px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), 0 5px 5px rgba(0, 0, 0, 0.12), 0 10px 30px rgba(0, 0, 0, 0.1);
+    outline: none;
+    font-size: 12px;
+
+
+    .azMenuItem {
+      display: grid;
+      align-content: center;
+      grid-template-columns: 24px 1fr;
+      background-color: #e8e8e8;
+      width: 100%;
+      padding: 5px 0;
+
+
+      span {
+        display: inline-block;
+      }
+
+      span.icon {
+        grid-column: 1/2;
+        text-align: center;
+        width: 24px;
+      }
+
+      span.icon svg {
+        margin-top: 3px;
+        width: 10px;
+        height: 10px;
+      }
+
+      span.title {
+        grid-column: 2/3;
+        margin: 1px 10px 0 8px;
+      }
+
+      &.disabled * {
+        color: gray;
+        fill: gray;
+        cursor: not-allowed;
+      }
+
+      &:not(.disabled).selected {
+        background-color: #498dd5;
+        color: #e8e8e8;
+        cursor: pointer;
+      }
+    }
+
+    .azMenuSeparator {
+      height: 2px;
+      border-top: solid 1px #d6d6d6;
+      background-color: white;
+      margin: 2px 0;
+      padding: 0;
+    }
+  }
+}
