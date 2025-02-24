@@ -1,0 +1,104 @@
+@media (hover: hover) {
+  .azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel:not(.disabled):hover {
+    background-color: #dedede;
+  }
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel:not(.disabled).active {
+  background-color: #c9c9c9;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.disabled.azTabLabel * {
+  color: gray;
+  fill: gray;
+  cursor: not-allowed;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel * {
+  user-select: none;
+}
+
+.azui {
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+}
+.azui *,
+.azui *::before,
+.azui *::after {
+  box-sizing: border-box;
+}
+.azui input:focus {
+  outline: none;
+}
+
+.azui.azui-tabs {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.azui.azui-tabs > .azTabHeader {
+  border-bottom: 1px solid #cfcfcf;
+  background-color: whitesmoke;
+  font-size: 13px;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels {
+  position: relative;
+  display: flex;
+  height: 100%;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel {
+  padding: 6px;
+  max-width: 150px;
+  width: 150px;
+  border-right: solid 1px #d6d6d6;
+  border-left: solid 1px white;
+  transition: 0.5s;
+  transition-property: background-color;
+  background-color: #e8e8e8;
+  display: grid;
+  grid-template-columns: 30px 1fr 30px;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel:first-of-type {
+  border-left: none;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel:last-of-type {
+  border-right: none;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel > div {
+  height: 100%;
+  display: grid;
+  align-items: center;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel > div.icon {
+  grid-column: 1/2;
+  justify-content: center;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel > div.icon svg {
+  height: 12px;
+  width: 12px;
+  display: inline-block;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel > div.title {
+  grid-column: 2/3;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel > div.title span {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel > div.close {
+  grid-column: 3/4;
+  justify-content: center;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel > div.close svg {
+  height: 8px;
+  width: 8px;
+  display: inline-block;
+}
+.azui.azui-tabs > .azTabHeader > div.azTabLabels > div.azTabLabel > div.close:hover {
+  fill: #d95244;
+}
+.azui.azui-tabs > .azTabContent {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}

@@ -13,7 +13,7 @@ export class Layout {
       southHeight: '50px',
       westWidth: '100px',
       eastWidth: '100px',
-      hideCollapseButton: true
+      hideCollapseButtons: true
    };
 
    init() {
@@ -39,7 +39,7 @@ export class Layout {
          makeResizable(me.north, {
             handles: 's',
             handleSize,
-            hideCollapseButton: settings.hideCollapseButton,
+            hideCollapseButtons: settings.hideCollapseButtons,
             create: function (e, h) {
                centerHeight = azdom.getHeight(me.center);
                dom.querySelectorAll('iframe').forEach(iframe => {
@@ -72,7 +72,7 @@ export class Layout {
          makeResizable(me.east, {
             handles: 'w',
             handleSize,
-            hideCollapseButton: settings.hideCollapseButton,
+            hideCollapseButtons: settings.hideCollapseButtons,
             moveOnResize: false,
             create: function (e, h) {
                centerWidth = azdom.getWidth(me.center);
@@ -106,7 +106,7 @@ export class Layout {
          makeResizable(me.south, {
             handles: 'n',
             handleSize,
-            hideCollapseButton: settings.hideCollapseButton,
+            hideCollapseButtons: settings.hideCollapseButtons,
             moveOnResize: false,
             create: function (e, h) {
                centerHeight = azdom.getHeight(me.center);
@@ -140,7 +140,7 @@ export class Layout {
          makeResizable(me.west, {
             handles: 'e',
             handleSize,
-            hideCollapseButton: settings.hideCollapseButton,
+            hideCollapseButtons: settings.hideCollapseButtons,
             create: function (e, h) {
                centerWidth = azdom.getWidth(me.center);
                dom.querySelectorAll('iframe').forEach(iframe => {

@@ -10,7 +10,7 @@
       background-color: var(--active);
     }
 
-    & div.collapseButton {
+    div.collapseButton {
       background-color: color-mix(in srgb, var(--main-color) 10%, white);
       display: flex;
       justify-content: center;

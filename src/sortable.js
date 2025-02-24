@@ -260,7 +260,7 @@ export class Sortable {
    }
 
    onOverTargetCenter(e) {
-      // console.log('on over target center!');
+      console.log('on over target center!');
       const settings = this.sortContainer.settings;
       const data = e.detail;
       if (!data.source.classList.contains('azSortableItem') || data.source.classList.contains('az-sortable-moving')) {

@@ -7,6 +7,7 @@ import { Layout } from './layout.js';
 import { RightClick } from './rightclick.js';
 import { ContextMenu } from './contextmenu.js';
 import { DoubleClick } from './doubleclick.js';
+import { Tabs } from './tabs.js';
 
 export { dndEvent, dndState };
 export const makeDraggable = (domElement, options, parent = null) => ui(Draggable, domElement, options, parent);
@@ -17,3 +18,4 @@ export const makeLayout = (domElement, options, parent = null) => ui(Layout, dom
 export const makeRightClick = (domElement, options, parent = null) => ui(RightClick, domElement, options, parent);
 export const makeContextMenu = (domElement, options, parent = null) => ui(ContextMenu, domElement, options, parent);
 export const makeDoubleClick = (domElement, options, parent = null) => ui(DoubleClick, domElement, options, parent);
+export const makeTabs = (domElement, options, parent = null) => ui(Tabs, domElement, options, parent);

@@ -18,7 +18,7 @@ export class Resizable {
       handles: 'all', //n, e, s, w, ne, se, sw, nw, all
       moveOnResize: true,
       hideHandles: false,
-      hideCollapseButton: false,
+      hideCollapseButtons: false,
       onDoubleClick: function (event) {
          // console.log(event.target);
       },
@@ -194,7 +194,7 @@ export class Resizable {
                eld.style['position'] = 'absolute';
                if (settings.hideHandles) {
                   eld.style['opacity'] = 0;
-               } else if (!settings.hideCollapseButton) {
+               } else if (!settings.hideCollapseButtons) {
                   if (d.length === 1) {
                      // exclude corner handles
                      const collapseButton = createCollapseButton(d);
@@ -297,7 +297,9 @@ export class Resizable {
                },
                stop: onStop
             });
-            me.dom.style['padding-top'] = settings.handleSize + 'px';
+            if (!settings.hideHandles) {
+               me.dom.style['padding-top'] = settings.handleSize + 'px';
+            }
          }
          if (h.e) {
             makeDraggable(eh.e, {
@@ -323,7 +325,9 @@ export class Resizable {
                },
                stop: onStop
             });
-            me.dom.style['padding-right'] = settings.handleSize + 'px';
+            if (!settings.hideHandles) {
+               me.dom.style['padding-right'] = settings.handleSize + 'px';
+            }
          }
          if (h.s) {
             makeDraggable(eh.s, {
@@ -349,7 +353,9 @@ export class Resizable {
                },
                stop: onStop
             });
-            me.dom.style['padding-bottom'] = settings.handleSize + 'px';
+            if (!settings.hideHandles) {
+               me.dom.style['padding-bottom'] = settings.handleSize + 'px';
+            }
          }
          if (h.w) {
             makeDraggable(eh.w, {
@@ -375,7 +381,9 @@ export class Resizable {
                },
                stop: onStop
             });
-            me.dom.style['padding-left'] = settings.handleSize + 'px';
+            if (!settings.hideHandles) {
+               me.dom.style['padding-left'] = settings.handleSize + 'px';
+            }
          }
 
          h.ne && makeDraggable(eh.ne, {
@@ -678,7 +686,7 @@ export class Resizable {
 
    _resetCollapseIconStyle() {
       const me = this;
-      if (me.settings.hideHandles || me.settings.hideCollapseButton) {
+      if (me.settings.hideHandles || me.settings.hideCollapseButtons) {
          return;
       }
 
