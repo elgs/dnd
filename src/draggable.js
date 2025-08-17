@@ -277,7 +277,7 @@ export class Draggable {
       const settings = me.settings;
 
       if (e.type === 'touchstart') {
-          e.preventDefault();
+         e.preventDefault();
       }
       if (e.type === 'mousedown' && e.button !== 0) {
          return;
@@ -348,7 +348,14 @@ export class Draggable {
       document.addEventListener('mouseup', me.onmouseup);
       document.addEventListener('mouseleave', me.onmouseup);
 
-      me.dropTargets = [...document.querySelectorAll('.azui-droppable')]
+      let droppables;
+      if (dom.shadowRoot) {
+         droppables = [...dom.shadowRoot.querySelectorAll('.azui-droppable')];
+      } else {
+         droppables = [...document.querySelectorAll('.azui-droppable')];
+      }
+
+      me.dropTargets = droppables
          .filter(dt => dt !== dom)
          .map(dt => {
             const ret = {
@@ -387,7 +394,11 @@ export class Draggable {
                me.containerScrollS = window.innerHeight;
                me.containerScrollE = window.innerWidth;
             } else {
-               container = document.querySelector(containment);
+               if (dom.shadowRoot) {
+                  container = dom.shadowRoot.querySelector(containment);
+               } else {
+                  container = document.querySelector(containment);
+               }
             }
          } else if (Array.isArray(containment)) {
             me.containerScrollW = containment[0];
