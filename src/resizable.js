@@ -44,12 +44,16 @@ export class Resizable {
       const dom = this.dom;
       const settings = this.settings;
 
-      let position = getComputedStyle(dom)['position'];
+      const styles = getComputedStyle(dom);
+      let position = styles['position'];
       if (position !== 'absolute' && position !== 'fixed') {
          position = 'relative';
          dom.style.position = position;
       }
       me.position = position;
+
+      me.dom.style.top ||= styles.top;
+      me.dom.style.left ||= styles.left;
 
       const parseHandles = function () {
          const h = {
