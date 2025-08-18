@@ -52,9 +52,6 @@ export class Resizable {
       }
       me.position = position;
 
-      me.dom.style.top ||= styles.top;
-      me.dom.style.left ||= styles.left;
-
       const parseHandles = function () {
          const h = {
             n: false,
@@ -108,7 +105,7 @@ export class Resizable {
       const h = parseHandles();
       // console.log(h);
 
-      // me.style;
+      // me.styles;
       let mx = 0;
       let my = 0; // position of this element, and mouse x, y coordinate
 
@@ -527,14 +524,14 @@ export class Resizable {
       const me = this;
       const dom = me.dom;
       const settings = me.settings;
-      me.style = getComputedStyle(dom);
+      me.styles = getComputedStyle(dom);
       if (me.position === 'relative') {
-         me.thisTop = parseInt(me.style.top || 0);
-         me.thisLeft = parseInt(me.style.left || 0);
+         me.thisTop = parseInt(me.styles.top || 0);
+         me.thisLeft = parseInt(me.styles.left || 0);
       } else {
          // child outer border to parent inner border
-         me.thisTop = dom.offsetTop - parseInt(me.style['margin-top']) || 0;
-         me.thisLeft = dom.offsetLeft - parseInt(me.style['margin-left'] || 0);
+         me.thisTop = dom.offsetTop - parseInt(me.styles['margin-top']) || 0;
+         me.thisLeft = dom.offsetLeft - parseInt(me.styles['margin-left'] || 0);
       }
 
       // outer border to outer border
@@ -549,6 +546,9 @@ export class Resizable {
       if (settings.aspectRatio === true) {
          me._aspectRatio = (dom.offsetWidth * 1.0) / (dom.offsetHeight * 1.0);
       }
+
+      me.dom.style.top ||= me.styles.top;
+      me.dom.style.left ||= me.styles.left;
    }
 
    moveY(by, n) {
@@ -559,18 +559,18 @@ export class Resizable {
          by = -me.yToMax;
       }
       if (me.settings.moveOnResize) {
-         const borderTop = parseInt(me.style['border-top-width']);
-         const borderBottom = parseInt(me.style['border-bottom-width']);
-         const paddingTop = parseInt(me.style['padding-top']);
-         const paddingBottom = parseInt(me.style['padding-bottom']);
+         const borderTop = parseInt(me.styles['border-top-width']);
+         const borderBottom = parseInt(me.styles['border-bottom-width']);
+         const paddingTop = parseInt(me.styles['padding-top']);
+         const paddingBottom = parseInt(me.styles['padding-bottom']);
          if (me.thisHeight - by >= borderTop + borderBottom + paddingTop + paddingBottom) {
             if (n) {
                me.dom.style.top = me.thisTop + by + 'px';
             }
-            setOuterBorderHeight(me.dom, me.thisHeight - by, me.style);
+            setOuterBorderHeight(me.dom, me.thisHeight - by, me.styles);
          }
       } else {
-         setOuterBorderHeight(me.dom, me.thisHeight - by, me.style);
+         setOuterBorderHeight(me.dom, me.thisHeight - by, me.styles);
       }
    }
 
@@ -582,18 +582,18 @@ export class Resizable {
          by = -me.xToMax;
       }
       if (me.settings.moveOnResize) {
-         const borderLeft = parseInt(me.style['border-left-width']);
-         const borderRight = parseInt(me.style['border-right-width']);
-         const paddingLeft = parseInt(me.style['padding-left']);
-         const paddingRight = parseInt(me.style['padding-right']);
+         const borderLeft = parseInt(me.styles['border-left-width']);
+         const borderRight = parseInt(me.styles['border-right-width']);
+         const paddingLeft = parseInt(me.styles['padding-left']);
+         const paddingRight = parseInt(me.styles['padding-right']);
          if (me.thisWidth - by >= borderLeft + borderRight + paddingLeft + paddingRight) {
             if (w) {
                me.dom.style.left = me.thisLeft + by + 'px';
             }
-            setOuterBorderWidth(me.dom, me.thisWidth - by, me.style);
+            setOuterBorderWidth(me.dom, me.thisWidth - by, me.styles);
          }
       } else {
-         setOuterBorderWidth(me.dom, me.thisWidth - by, me.style);
+         setOuterBorderWidth(me.dom, me.thisWidth - by, me.styles);
       }
    }
 

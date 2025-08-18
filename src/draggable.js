@@ -126,7 +126,7 @@ export class Draggable {
 
          me.setContainment(settings.containment);
 
-         // me.style['cursor', 'pointer');
+         // me.styles['cursor', 'pointer');
          if (settings.opacity) {
             dom.style.opacity = settings.opacity;
          }
@@ -239,7 +239,7 @@ export class Draggable {
       me.resisted = false;
       dom.style['z-index'] = me.savedZIndex;
 
-      // me.style['cursor', 'default');
+      // me.styles['cursor', 'default');
       if (settings.opacity) {
          dom.style.opacity = 1;
       }
