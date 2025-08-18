@@ -348,7 +348,7 @@ export class Draggable {
       document.addEventListener('mouseup', me.onmouseup);
       document.addEventListener('mouseleave', me.onmouseup);
 
-      me.dropTargets = [...document.querySelectorAll('.azui-droppable')]
+      me.dropTargets = [...me.parent.querySelectorAll('.azui-droppable')]
          .filter(dt => dt !== dom)
          .map(dt => {
             const ret = {
@@ -387,7 +387,7 @@ export class Draggable {
                me.containerScrollS = window.innerHeight;
                me.containerScrollE = window.innerWidth;
             } else {
-               container = document.querySelector(containment);
+               container = me.parent.querySelector(containment);
             }
          } else if (Array.isArray(containment)) {
             me.containerScrollW = containment[0];

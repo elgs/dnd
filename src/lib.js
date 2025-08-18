@@ -41,6 +41,7 @@ export const ui = (componentClass, domElement, options, parent = null) => {
    dom.classList.add('azui', componentClass.id);
    dom.setAttribute(componentClass.id, domId++);
    componentObject.dom = dom;
+   componentObject.parent = parent ?? document;
    componentObject.settings = { ...componentClass.settings, ...options };
    componentObject.init?.call(componentObject);
    return componentObject;
@@ -53,7 +54,7 @@ export const resolveDOM = (parent, dom) => {
    } else if ((dom instanceof NodeList || Array.isArray(dom)) && dom.length > 0) {
       return dom[0];
    } else if (typeof dom === 'string') {
-      return (parent || document).querySelector(dom);
+      return (parent ?? document).querySelector(dom);
    }
 };
 
